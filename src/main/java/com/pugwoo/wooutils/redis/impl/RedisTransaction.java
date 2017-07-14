@@ -1,5 +1,6 @@
 package com.pugwoo.wooutils.redis.impl;
 
+import org.aspectj.lang.ProceedingJoinPoint;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -65,5 +66,6 @@ public class RedisTransaction {
 			return false;
 		}
 	}
+
 	
 }

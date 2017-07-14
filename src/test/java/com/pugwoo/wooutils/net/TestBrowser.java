@@ -29,7 +29,7 @@ public class TestBrowser {
 	}
 	
 	public static void main(String[] args) throws Exception {
-		OutputStream out = new FileOutputStream("d:/a.pdf");
+		OutputStream out = new FileOutputStream("d:/centos.iso");
 		HttpResponse resp = new Browser().getAsync("http://mirrors.163.com/centos/7/isos/x86_64/CentOS-7-x86_64-DVD-1611.iso",
 				out);
 		while(!resp.isDownloadFinished()) {
@@ -39,7 +39,7 @@ public class TestBrowser {
 		
 		/////////////////////////// 把远程的下载转输的outputStream出到下载的InputStream，使用pipe的方式
 		
-		final String downUrl = "http://下载链接";
+		/*final String downUrl = "http://下载链接";
 		
     	PipedInputStream in = new PipedInputStream();
     	final PipedOutputStream out2 = new PipedOutputStream(in); // 将输入流和输出流对起来
@@ -55,7 +55,7 @@ public class TestBrowser {
     	}).start();
     	
     	Map<String, String> headers = new HashMap<String, String>();
-    	headers.put("Content-type", "application/pdf");
+    	headers.put("Content-type", "application/pdf");*/
 //    	return new StreamDownloadBean("sample-" + sampleNumber + ".pdf", in, headers);
 
 	}

@@ -116,13 +116,14 @@ public class RedisLimit {
 				}
 				
 				long expireSeconds = redisHelper.getExpireSecond(key);
+
 				long restSeconds = getRestSeconds(limitParam.getLimitPeroid());
 				Integer setRest = null;
 				// 为了避免跨周期设置问题，只能将ttl的值变小，不能变大； -1和-2（key不存在）时可以设置
 				if(expireSeconds < 0 || expireSeconds >= 0 && restSeconds <= expireSeconds) {
 					setRest = (int) restSeconds;
 				}
-				
+
 				if(redisHelper.compareAndSet(key, newValue + "", oldValue, setRest)) {
 					return limitParam.getLimitCount() - newValue;
 				} else {
@@ -227,5 +228,6 @@ public class RedisLimit {
 		cal.set(Calendar.MILLISECOND, 0);
 		return (cal.getTimeInMillis() - System.currentTimeMillis()) / 1000;
 	}
+
 	
 }

@@ -135,5 +135,8 @@ public interface RedisHelper {
 	 * @param key
 	 */
 	boolean releaseLock(String namespace, String key);
-	
+
+
+
+	Long nextId(String work);
 }
