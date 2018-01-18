@@ -59,7 +59,28 @@ public class RedisHelperImpl implements RedisHelper {
 		}
 		return pool.getResource();
 	}
-	
+
+	@Override
+	public boolean setString(String key, String value) {
+		Jedis jedis = null;
+		try {
+			jedis = getJedisConnection();
+			jedis.set(key, value);
+			return true;
+		} catch (Exception e) {
+			LOGGER.error("operate jedis error, key:{}, value:{}", key, value, e);
+			return false;
+		} finally {
+			if (jedis != null) {
+				try {
+					jedis.close();
+				} catch (Exception e) {
+					LOGGER.error("close jedis error, key:{}, value:{}", key, value, e);
+				}
+			}
+		}
+	}
+
 	@Override
 	protected void finalize() throws Throwable {
 		if(pool != null && !pool.isClosed()) {

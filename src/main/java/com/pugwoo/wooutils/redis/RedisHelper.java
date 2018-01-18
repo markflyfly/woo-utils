@@ -8,6 +8,15 @@ public interface RedisHelper {
 	 * 拿Jedis连接，用完Jedis之后【必须】close jedis，这个非常重要
 	 */
 	Jedis getJedisConnection();
+
+
+	/**
+	 * 设置字符串，不设置过期时间
+	 * @param key
+	 * @param value
+	 * @return
+	 */
+	boolean setString(String key,String value);
 	
 	/**
 	 * 设置字符串
